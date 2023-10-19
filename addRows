@@ -1,0 +1,25 @@
+function addRows() {
+  //Get the active sheet.
+  var spreadsheet = SpreadsheetApp.getActiveSheet();
+
+  //Get the last row of the table.
+  var lastRow = spreadsheet.getLastRow();
+
+  //Get the range to copy.
+  const range = spreadsheet.getRange('2:7');
+  const headings = spreadsheet.getRange('B2:B7');
+  
+  //Copy the range after last row.
+  range.copyTo(spreadsheet.getRange(lastRow+1,1),SpreadsheetApp.CopyPasteType.PASTE_FORMAT,false);
+  range.copyTo(spreadsheet.getRange(lastRow+1,1),SpreadsheetApp.CopyPasteType.PASTE_DATA_VALIDATION,false);
+  headings.copyTo(spreadsheet.getRange(lastRow+1,2));
+
+
+  //Create array of drawings in this sheet.
+  var drawing = spreadsheet.getDrawings();
+
+  //Take the first drawing and position it after new last row.
+  var button = Logger.log(drawing[0].setPosition(lastRow+7,1,0,0));
+ 
+
+};
