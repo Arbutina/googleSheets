@@ -1,0 +1,32 @@
+function Ishodi() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  //Get a range to check.
+  var cell = spreadsheet.getActiveCell().getRowIndex();
+  var range = spreadsheet.getRange('L'+cell+':O'+cell).getValues();
+
+  //Ishodi
+  const ishodi = ['користи логичке операције','користи скуповне операције','провери да ли је пресликавање функција и да ли има особине 1-1 и НА','користи функције и њихова својства'];
+  var ifOutput = 'На крају реализоване теме ЛОГИКА И СКУПОВИ ученик/ца је у стању да ';
+  var elseOutput = 'Ученик/ца није у стању да ';
+
+  for(var i =0; i<=3; i++)
+  {
+    if(range[0][i]>=5)
+    {
+     ifOutput = ifOutput+'\n*'+ishodi[i];
+    }
+    else
+    {
+      elseOutput = elseOutput+'\n*'+ishodi[i];
+    }
+  }
+  if(ifOutput == 'На крају реализоване теме ЛОГИКА И СКУПОВИ ученик/ца је у стању да ')
+  {
+    spreadsheet.getActiveCell().setValue('На крају реализоване теме ЛОГИКА И СКУПОВИ '+'\n'+elseOutput);
+  }
+  else
+  {
+    spreadsheet.getActiveCell().setValue(ifOutput +'\n'+ elseOutput);
+  }
+}
